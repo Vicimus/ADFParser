@@ -1,0 +1,23 @@
+{
+    "name": "vicimus/adfparser",
+    "description": "",
+    "authors": [
+        {
+            "name": "Vicimus",
+            "email": "dev@vicimus.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "4.2.*"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations"
+        ],
+        "psr-0": {
+            "Vicimus\\Adfparser\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
