@@ -6,10 +6,7 @@ class ADFParser
 {
 	public $date;
 	public $vehicle;
-	public $first;
-	public $last;
-	public $email;
-	public $phone;
+	public $customer;
 	public $vendor;
 
 	public static function parseString($xml)
@@ -25,12 +22,12 @@ class ADFParser
 		$vehicle .= ' '.(string)$xml->prospect->vehicle->model;
 
 		$adf->vehicle = $vehicle;
-		
-		$adf->first = (string)$xml->prospect->customer->contact->name[0];
-		$adf->last = (string)$xml->prospect->customer->contact->name[1];
-		$adf->email = (string)$xml->prospect->customer->contact->email;
-		$adf->phone = (string)$xml->prospect->customer->contact->phone;
+
+		$adf->customer = new Customer($xml->prospect->customer);
+
 		$adf->vendor = (string)$xml->prospect->vendor->contact->name;
+		
+		$adf->provider = new Provider($xml->prospect->provider);
 		
 		return $adf;
 	}
