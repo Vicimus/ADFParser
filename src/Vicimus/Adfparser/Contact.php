@@ -16,7 +16,13 @@ class Contact
 		if(!is_null($object))
 		{
 			$this->isPrimary = (bool)$object['primarycontact'];
-			$this->name = (string)$object->name;
+			$this->name = '';
+
+			foreach($object->name as $name)
+				$this->name .= $name.' ';
+
+			$this->name = trim($this->name);
+
 			$this->email = (string)$object->email;
 			$this->phone = array();
 			if(is_array($object->phone))

@@ -11,6 +11,7 @@ class ADFParser
 
 	public static function parseString($xml)
 	{
+
 		$xml = simplexml_load_string($xml);
 		
 		$adf = new ADFParser();
@@ -21,15 +22,19 @@ class ADFParser
 		$vehicle .= ' '.(string)$xml->prospect->vehicle->make;
 		$vehicle .= ' '.(string)$xml->prospect->vehicle->model;
 
-		$adf->vehicle = $vehicle;
+		$adf->vehicle = new Vehicle($xml->prospect->vehicle);
 
 		$adf->customer = new Customer($xml->prospect->customer);
 
-		$adf->vendor = (string)$xml->prospect->vendor->contact->name;
+		$adf->vendor = new Vendor($xml->prospect->vendor);
 		
 		$adf->provider = new Provider($xml->prospect->provider);
 		
 		return $adf;
 	}
 	
+	public function getDate()
+	{
+		return new \DateTime($this->date);
+	}
 }
