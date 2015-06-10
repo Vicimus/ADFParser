@@ -18,9 +18,16 @@ class Contact
 			$this->isPrimary = (bool)$object['primarycontact'];
 			$this->name = '';
 
-			foreach($object->name as $name)
-				$this->name .= $name.' ';
-
+			try
+			{
+				foreach($object->name as $name)
+					$this->name .= $name.' ';
+			}
+			catch(\Exception $ex)
+			{
+				$this->name = (string)$object->name;
+			}
+		
 			$this->name = trim($this->name);
 
 			$this->email = (string)$object->email;
