@@ -11,7 +11,7 @@ class Customer
 	public function __construct(\SimpleXMLElement $object = null)
 	{
 		$this->contact = new Contact($object->contact);
-		$this->comments = (string)$object->comments;
+		$this->comments = trim((string)$object->comments);
 		$this->timeframe = new Timeframe($object->timeframe);
 	}
 }
